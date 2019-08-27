@@ -28,10 +28,10 @@ int main()
 {
 	try {
 		std::threadpool executor{ 50 };
-		executor.commit(fun1, 20);
-		executor.commit(fun2, 2);
-		executor.commit(fun2, 5);
-		executor.commit(fun1, 9);
+		std::future<void> ff = executor.commit(fun1, 20);
+		std::future<void> ff1 = executor.commit(fun2, 2);
+		std::future<void> ff2 = executor.commit(fun2, 5);
+		std::future<void> ff3 = executor.commit(fun1, 9);
 
 		std::cout << " =======  sleep ========= " << std::this_thread::get_id() << std::endl;
 		std::this_thread::sleep_for(std::chrono::microseconds(900));
