@@ -74,7 +74,7 @@ namespace std
 			}
 #endif // !THREADPOOL_AUTO_GROW
 			_task_cv.notify_one(); // 唤醒一个线程执行
-			std::cout << "idlCount:" << _idlThrNum << std::endl;
+			std::cout << "idlCount:" << this.idlCount << std::endl;
 			return future;
 		}
 

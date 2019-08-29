@@ -6,7 +6,6 @@
 #include <queue>
 #include <atomic>
 #include <future>
-#include <iostream>
 //#include <condition_variable>
 //#include <thread>
 //#include <functional>
@@ -16,7 +15,7 @@ namespace std
 {
 	//线程池最大容量,应尽量设小一点
 #define  THREADPOOL_MAX_NUM 16
-#define  THREADPOOL_AUTO_GROW 1
+#define  THREADPOOL_AUTO_GROW
 
 //线程池,可以提交变参函数或拉姆达表达式的匿名函数执行,可以获取执行返回值
 //不直接支持类成员函数, 支持类静态成员函数或全局函数,Opteron()函数等
@@ -68,13 +67,10 @@ namespace std
 			}
 #ifdef THREADPOOL_AUTO_GROW
 			if (_idlThrNum < 1 && _pool.size() < THREADPOOL_MAX_NUM)
-			{
 				addThread(1);
-				std::cout << "thrCount:" << _pool.size() << std::endl;
-			}
 #endif // !THREADPOOL_AUTO_GROW
 			_task_cv.notify_one(); // 唤醒一个线程执行
-			std::cout << "idlCount:" << _idlThrNum << std::endl;
+
 			return future;
 		}
 

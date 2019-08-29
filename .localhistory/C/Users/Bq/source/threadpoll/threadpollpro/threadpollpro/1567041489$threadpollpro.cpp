@@ -27,26 +27,16 @@ void fun2(int slp)
 int main()
 {
 	try {
-		std::threadpool executor{ 4 };
-		//executor.commit(fun1, 1);
-		//executor.commit(fun2, 2);
-		//executor.commit(fun2, 3);
-		//executor.commit(fun1, 4);
-		//executor.commit(fun1, 5);
-		//executor.commit(fun1, 6);
-		//executor.commit(fun1, 7);
-		//executor.commit(fun1, 8);
-		//executor.commit(fun1, 9);
-
-		executor.commit(fun1, 10);
-		executor.commit(fun2, 10);
-		executor.commit(fun2, 10);
-		executor.commit(fun1, 10);
-		executor.commit(fun1, 10);
-		executor.commit(fun1, 10);
-		executor.commit(fun1, 10);
-		executor.commit(fun1, 10);
-		executor.commit(fun1, 10);
+		std::threadpool executor{ 9 };
+		executor.commit(fun1, 1);
+		executor.commit(fun2, 2);
+		executor.commit(fun2, 3);
+		executor.commit(fun1, 4);
+		executor.commit(fun1, 5);
+		executor.commit(fun1, 6);
+		executor.commit(fun1, 7);
+		executor.commit(fun1, 8);
+		executor.commit(fun1, 9);
 
 		std::cout << " =======  sleep ========= " << std::this_thread::get_id() << std::endl;
 		std::this_thread::sleep_for(std::chrono::microseconds(900));

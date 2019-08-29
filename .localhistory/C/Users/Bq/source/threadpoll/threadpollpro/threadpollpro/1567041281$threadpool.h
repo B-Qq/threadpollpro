@@ -6,7 +6,6 @@
 #include <queue>
 #include <atomic>
 #include <future>
-#include <iostream>
 //#include <condition_variable>
 //#include <thread>
 //#include <functional>
@@ -68,13 +67,10 @@ namespace std
 			}
 #ifdef THREADPOOL_AUTO_GROW
 			if (_idlThrNum < 1 && _pool.size() < THREADPOOL_MAX_NUM)
-			{
 				addThread(1);
-				std::cout << "thrCount:" << _pool.size() << std::endl;
-			}
 #endif // !THREADPOOL_AUTO_GROW
 			_task_cv.notify_one(); // 唤醒一个线程执行
-			std::cout << "idlCount:" << _idlThrNum << std::endl;
+
 			return future;
 		}
 
